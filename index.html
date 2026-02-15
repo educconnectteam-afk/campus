@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu-Connect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- BARRE DE NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1><i class="fas fa-graduation-cap"></i> Edu-Connect</h1>
+        </div>
+        <div class="nav-right" id="auth-section">
+            
+            <button id="login-btn" class="btn btn-outline">Connexion</button>
+            <button id="register-btn" class="btn btn-primary">Inscription</button>
+        </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="app-container">
+        
+        <!-- ÉCRAN DE CONNEXION -->
+        <div id="login-screen" class="screen active">
+            <div class="auth-container">
+                <div class="form-card">
+                    <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
+                    <div class="form-group">
+                        <input type="email" id="login-email" placeholder="Votre Email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="login-password" placeholder="Mot de passe" class="form-input" required>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="login()">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </button>
+                    <p class="form-footer">
+                        Première fois ? <a href="#" onclick="showRegister()">Crée un compte</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÉCRAN D'INSCRIPTION -->
+        <div id="register-screen" class="screen">
+            <div class="auth-container">
+                <div class="form-card">
+                    <h2><i class="fas fa-user-plus"></i> Inscription</h2>
+                    <div class="form-group">
+                        <input type="text" id="register-name" placeholder="Nom complet" class="form-input"required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="register-email" placeholder="Votre Email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="register-username" placeholder="Nom d'utilisateur" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="register-university" class="form-input" required>
+                            <option value="">Choisis ton université</option>
+                            <option value="UAM">Université De Niamey (UAM)</option>
+                            <option value="UAS">Université De Zinder (UAS)</option>
+                            <option value="UJH">Université De Tahoua </option>
+                            <option value="UDDM">Université De Maradi (UDDM) </option>
+                            <option value="UDO">Université de Dosso (UDO) </option>
+                            <option value="UAZ">Université d'Agadez (UAZ) </option>
+                            <option value="UTI">Université de Tillabéri </option>
+                            <option value="UIN">Université Islamique du Niger (UIN) </option>
+                            <option value="ATS">autres</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="register-password" placeholder="Mot de passe" class="form-input" required>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="register()">
+                        <i class="fas fa-user-plus"></i> Créer mon compte
+                    </button>
+                    <p class="form-footer">
+                        Déjà inscrit ? <a href="#" onclick="showLogin()">Connecte-toi</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÉCRAN PRINCIPAL (FEED) -->
+        <div id="feed-screen" class="screen">
+            
+            <!-- BARRE DE RECHERCHE -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Rechercher des posts, des personnes...">
+                </div>
+            </div>
+
+            <!-- CONTENU -->
+            <div class="feed-layout">
+                
+                <!-- SIDEBAR GAUCHE -->
+                <aside class="sidebar">
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-user"></i> Ton profil</h3>
+                        <div id="user-profile">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-info">
+                                <strong id="profile-name">Chargement...</strong>
+                                <small id="profile-university"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-users"></i> Étudiants</h3>
+                        <div id="online-users">
+                            <p>Chargement...</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- CONTENU CENTRAL -->
+                <section class="main-content">
+                    
+                    <!-- CRÉATION DE POST -->
+                    <div class="create-post">
+                        <div class="post-header">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <textarea id="post-content" placeholder="Partage quelque chose avec la communauté..."></textarea>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn" onclick="addImage()">
+                                <i class="fas fa-image"></i> Photo
+                            </button>
+                            <button class="action-btn" onclick="createPost()">
+                                <i class="fas fa-paper-plane"></i> Publier
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FILTRES -->
+                    <div class="filters">
+                        <button class="filter-btn active">Général</button>
+                        <button class="filter-btn">Amis(e)</button>
+                        <button class="filter-btn">Questions</button>
+                        <button class="filter-btn">Ressources</button>
+                        
+                    </div>
+
+                    <!-- LISTE DES POSTS -->
+                    <div id="posts-container">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i> Chargement des publications...
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- SIDEBAR DROITE -->
+                
+                                        
+                    <div class="sidebar-card" id="recommendations-section">
+                        <h3><i class="fas fa-star"></i> Pour vous</h3>
+                        <div id="recommended-posts">
+                            <p style="color: #65676b; font-size: 14px;">
+                                <i class="fas fa-spinner fa-spin"></i> Chargement...
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- NOTIFICATIONS -->
+    <div id="notification"></div>
+
+    <!-- SCRIPT -->
+    <script src="app.js"></script>
+</body>
+</html>
